@@ -187,7 +187,7 @@ def run_rep(i):
     result, runlen_result = Server(n, Y, m0, m, covMat, loss, lambda_, limit, indM, invSigM, tau).run()
     matrix[i] = np.array(runlen_result)
     print("Process " + str(i) + " completed")
-    print("每个client的ARL:", matrix[i])
+    print("Runlen of every client:", matrix[i])
     return result
 
 
