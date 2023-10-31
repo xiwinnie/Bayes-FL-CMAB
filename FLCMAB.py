@@ -149,16 +149,16 @@ def generate_data(n, T, bd, k0, bd0, nq0, k1, ndefect, delta, sigma, Tin):
 
         Y[:, i] = B00.dot(theta0[i, :]) + sigma * np.random.randn(n)
 
-    # 创建节点向量
+
     knots = np.concatenate((np.ones(bd), np.linspace(1, n, int(round(n / k1))), np.full(bd, n)))
 
-    # 计算节点数量
+ 
     nKnots = len(knots) - (bd - 1)
 
-    # 创建 B-样条样条曲线 kspline
+    # create kspline
     kspline = BSpline(knots, np.eye(nKnots), k=bd - 1)
 
-    # 计算 B-样条基函数的值
+   
     x = np.arange(1, n + 1)
     B = kspline(x)
     B = B[:, 2:-2]
@@ -253,18 +253,18 @@ indM = np.array(combinations_list)
 nM = len(indM)
 invSigM = []
 matrix = np.zeros((nrep, n))
-# 遍历 indM 中的每一行
+
 for i in range(nM):
-    # 获取当前行对应的索引子集
+  
     subset_indices = indM[i, :] - 1
 
-    # 根据索引子集从 covMat 中获取子矩阵
+    
     covMat_subset = covMat[subset_indices][:, subset_indices]
 
-    # 计算子矩阵的逆矩阵
+   
     inv_covMat_subset = np.linalg.inv(covMat_subset)
 
-    # 将逆矩阵添加到 invSigM 列表中
+    
     invSigM.append(inv_covMat_subset)
 
 if __name__ == "__main__":
